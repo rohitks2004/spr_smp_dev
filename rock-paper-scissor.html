@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <title>rock-paper-scissor</title>
+</head>
+<body>
+    <p>rock-paper-scissor</p>
+    <button onclick="playerMove('rock')">rock</button>
+    <button onclick="playerMove('paper')">paper</button>
+    <button onclick="playerMove('scissor')">scissor</button>
+    <button onclick="resetscore()">reset score</button>
+    <p class="result"></p>
+    <script>
+        var result;
+        var score ={
+            win:0,lose:0,tie:0
+        }
+
+        const resetscore = () =>score={ win:0,lose:0,tie:0};
+
+        const computerValue = () => {
+            var compVal=Math.floor((Math.random()*3)+1);
+            if(compVal ===1 ) compVal = 'rock';
+            else if(compVal ===2) compVal = 'paper';
+            else compVal = 'scissor'
+            return compVal;
+        }
+
+       const playerMove = (person) =>{
+           
+            var computer=computerValue();
+            if(computer === 'rock' && person === 'paper' || computer==='paper' && person ==='scissor' || computer==='scissor' && person==='rock'){
+                score.win++;
+                result='you win';                
+            }
+            else if(computer === 'rock' && person === 'rock' || computer==='paper' && person ==='paper' || computer==='scissor' && person==='scissor'){
+                score.tie++;
+                result='tie';
+            }
+            else{
+                score.lose++
+                result='you lose';
+            }
+            alert(`You: ${person} and computer: ${computer}\n${result}\nwins:${score.win} loses:${score.lose} ties:${score.tie}`);
+        }
+
+       
+    </script>
+</body>
