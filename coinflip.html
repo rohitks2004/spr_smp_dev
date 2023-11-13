@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+    <title>Coin Flip</title>
+</head>
+<body>
+    <h1>Click your Prediction</h1>
+    <button onclick="gamePlay('head')">Head</button>
+    <button onClick="gamePlay('tail')">Tail</button>
+    <script>
+        const toss = () => {
+            var m=Math.floor(Math.random()*2+1)
+           if(m===1) return "head"
+            else return "tail"
+        }
+        
+        const gamePlay =(guessValue) =>{
+            var originalValue=toss();
+            alert(`Actual Value ${originalValue}\n${originalValue ===  guessValue ? "You win" : "You lose"}`);
+        }
+    </script>
+</body>
