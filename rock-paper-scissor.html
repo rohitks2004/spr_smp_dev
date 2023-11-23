@@ -3,20 +3,21 @@
     <title>rock-paper-scissor</title>
 </head>
 <body>
-    <!--holle-->
     <p>rock-paper-scissor</p>
-    <button onclick="playerMove('rock')">rock</button>
+    <button onclick="playerMove('rock')">rock</button> 
+    
     <button onclick="playerMove('paper')">paper</button>
     <button onclick="playerMove('scissor')">scissor</button>
     <button onclick="resetscore()">reset score</button>
     <p class="result"></p>
     <script>
         var result;
-        var score ={
-            win:0,lose:0,tie:0
-        }
+        var score =JSON.parse(localStorage.getItem('score')) || { win:0,lose:0,tie:0} //  || - default operator
 
-        const resetscore = () =>score={ win:0,lose:0,tie:0};
+        const resetscore = () =>{
+            score={ win:0,lose:0,tie:0};
+            localStorage.removeItem('score');
+        }
 
         const computerValue = () => {
             var compVal=Math.floor((Math.random()*3)+1);
@@ -42,8 +43,9 @@
                 result='you lose';
             }
             alert(`You: ${person} and computer: ${computer}\n${result}\nwins:${score.win} loses:${score.lose} ties:${score.tie}`);
+            localStorage.setItem('score',JSON.stringify(score))
         }
-
+        
        
     </script>
 </body>
